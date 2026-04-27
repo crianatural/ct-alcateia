@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiu-Jitsu — A Arte Suave</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a08;--dark:#111210;--surface:#1a1c18;
+  --gold:#c8a84b;--white:#f0ede6;--muted:#8a8880;
+  --font-d:'Bebas Neue',sans-serif;
+  --font-c:'Barlow Condensed',sans-serif;
+  --font-b:'Barlow',sans-serif;
+}
+body{background:var(--black);color:var(--white);font-family:var(--font-b);overflow-x:hidden}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:99;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 40px;
+  background:rgba(10,10,8,0.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.nav-brand{font-family:var(--font-d);font-size:22px;letter-spacing:.08em;color:var(--gold)}
+.nav-link{
+  font-family:var(--font-c);font-size:13px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;
+  background:var(--gold);color:var(--black);padding:9px 20px;
+  clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);
+  font-weight:600;transition:background .2s;
+}
+.nav-link:hover{background:#d4b55a}
+
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 40px 72px;
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(to bottom,rgba(10,10,8,.2) 0%,rgba(10,10,8,.65) 55%,rgba(10,10,8,.98) 100%),
+    #1a1c18;
+}
+.hero-pattern{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(45deg,rgba(200,168,75,.03) 0,rgba(200,168,75,.03) 1px,transparent 0,transparent 50%);
+  background-size:30px 30px;
+}
+.hero-eyebrow{
+  font-family:var(--font-c);font-size:12px;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;position:relative;
+}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--gold)}
+h1{
+  font-family:var(--font-d);
+  font-size:clamp(64px,12vw,148px);
+  line-height:.9;letter-spacing:.02em;
+  color:var(--white);position:relative;margin-bottom:10px;
+}
+h1 span{color:var(--gold)}
+.hero-sub{
+  font-family:var(--font-c);font-size:clamp(14px,2vw,20px);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:40px;position:relative;
+}
+.btn{
+  display:inline-block;font-family:var(--font-c);font-weight:600;
+  font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--black);background:var(--gold);text-decoration:none;
+  padding:15px 36px;transition:all .2s;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.btn:hover{background:#d4b55a;transform:translateX(3px)}
+
+.stripe{
+  background:var(--gold);padding:12px 0;overflow:hidden;
+}
+.stripe-track{display:flex;gap:48px;animation:marquee 16s linear infinite;width:max-content}
+.stripe-item{
+  font-family:var(--font-d);font-size:16px;letter-spacing:.1em;
+  color:var(--black);white-space:nowrap;flex-shrink:0;
+}
+.stripe-item::after{content:'◆';font-size:7px;opacity:.4;margin-left:48px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+section{padding:88px 40px}
+
+.label{
+  font-family:var(--font-c);font-size:11px;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.label::before{content:'';width:28px;height:1px;background:var(--gold)}
+h2{
+  font-family:var(--font-d);
+  font-size:clamp(40px,6vw,72px);
+  line-height:.95;letter-spacing:.02em;margin-bottom:20px;
+}
+
+/* O QUE É */
+.sobre{background:var(--dark)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px}
+.sobre-text p{font-size:15px;line-height:1.85;color:rgba(240,237,230,.75);margin-bottom:16px}
+.sobre-facts{display:flex;flex-direction:column;gap:3px}
+.fact{
+  background:var(--surface);padding:28px 28px;
+  border-left:3px solid var(--gold);
+}
+.fact-num{font-family:var(--font-d);font-size:48px;color:var(--gold);line-height:1}
+.fact-label{font-family:var(--font-c);font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+
+/* PILARES */
+.pilares{background:var(--black)}
+.pilares-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
+.pilar{background:var(--surface);padding:36px 28px;position:relative;overflow:hidden;transition:background .3s}
+.pilar:hover{background:#222520}
+.pilar::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .3s}
+.pilar:hover::before{height:100%}
+.pilar-n{font-family:var(--font-d);font-size:56px;color:rgba(255,255,255,.04);position:absolute;top:12px;right:16px}
+.pilar-title{font-family:var(--font-d);font-size:28px;letter-spacing:.03em;margin-bottom:8px}
+.pilar-desc{font-size:14px;line-height:1.7;color:var(--muted)}
+
+/* FAIXA */
+.faixas{background:var(--dark)}
+.faixas-row{display:flex;gap:3px;margin-top:48px;align-items:stretch}
+.faixa{flex:1;padding:20px 16px;text-align:center;position:relative}
+.faixa-bar{height:8px;border-radius:2px;margin-bottom:14px}
+.faixa-name{font-family:var(--font-c);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.faixa-time{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* CTA */
+.cta{
+  background:var(--black);text-align:center;padding:100px 40px;
+  position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'JIU-JITSU';font-family:var(--font-d);
+  font-size:clamp(60px,16vw,200px);
+  color:rgba(255,255,255,.025);
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  white-space:nowrap;pointer-events:none;letter-spacing:.05em;
+}
+.cta h2{position:relative;margin-bottom:12px}
+.cta-sub{
+  font-family:var(--font-c);font-size:15px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:40px;position:relative;
+}
+
+footer{
+  background:var(--dark);border-top:1px solid rgba(255,255,255,.06);
+  padding:28px 40px;display:flex;align-items:center;justify-content:space-between;
+}
+.footer-brand{font-family:var(--font-d);font-size:20px;letter-spacing:.08em;color:var(--gold)}
+.footer-copy{font-family:var(--font-c);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.on{opacity:1;transform:none}
+
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .hero{padding:0 20px 56px}
+  section{padding:64px 20px}
+  .sobre-grid{grid-template-columns:1fr}
+  .pilares-grid{grid-template-columns:1fr}
+  .faixas-row{flex-wrap:wrap}
+  .faixa{flex:calc(33% - 3px);min-width:80px}
+  footer{flex-direction:column;gap:10px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">JIU-JITSU</div>
+  <a href="#cta" class="nav-link">Comece agora</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-eyebrow">A Arte Suave</div>
+  <h1>JIU-<br><span>JITSU</span></h1>
+  <p class="hero-sub">Técnica · Disciplina · Evolução</p>
+  <a href="#sobre" class="btn">Saiba mais</a>
+</section>
+
+<div class="stripe">
+  <div class="stripe-track">
+    <span class="stripe-item">Jiu-Jitsu</span>
+    <span class="stripe-item">Arte Suave</span>
+    <span class="stripe-item">Grappling</span>
+    <span class="stripe-item">Submissão</span>
+    <span class="stripe-item">Disciplina</span>
+    <span class="stripe-item">Evolução</span>
+    <span class="stripe-item">Jiu-Jitsu</span>
+    <span class="stripe-item">Arte Suave</span>
+    <span class="stripe-item">Grappling</span>
+    <span class="stripe-item">Submissão</span>
+    <span class="stripe-item">Disciplina</span>
+    <span class="stripe-item">Evolução</span>
+  </div>
+</div>
+
+<section class="sobre" id="sobre">
+  <div class="label">O que é</div>
+  <h2 class="reveal">A arte<br>suave</h2>
+  <div class="sobre-grid">
+    <div class="sobre-text reveal">
+      <p>O Jiu-Jitsu Brasileiro é uma arte marcial que ensina como um oponente menor e mais fraco pode se defender com sucesso contra um adversário maior e mais forte usando alavancas, equilíbrio e técnica.</p>
+      <p>Desenvolvido no Brasil a partir das técnicas do Judô japonês, o BJJ se tornou uma das artes marciais mais eficazes e praticadas no mundo, base fundamental do MMA moderno.</p>
+      <p>Mais do que luta, é uma filosofia de vida: a busca constante pela melhoria, a humildade no tatame e a resiliência fora dele.</p>
+    </div>
+    <div class="sobre-facts reveal">
+      <div class="fact">
+        <div class="fact-num">1914</div>
+        <div class="fact-label">Chegada do Judô ao Brasil com Mitsuyo Maeda</div>
+      </div>
+      <div class="fact">
+        <div class="fact-num">+200</div>
+        <div class="fact-label">Países onde o BJJ é praticado hoje</div>
+      </div>
+      <div class="fact">
+        <div class="fact-num">10M+</div>
+        <div class="fact-label">Praticantes estimados no mundo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pilares" id="pilares">
+  <div class="label">Por que praticar</div>
+  <h2 class="reveal">Os pilares<br>do BJJ</h2>
+  <div class="pilares-grid">
+    <div class="pilar reveal">
+      <div class="pilar-n">01</div>
+      <div class="pilar-title">Autodefesa</div>
+      <p class="pilar-desc">Técnicas eficazes para se proteger em situações reais, independente do tamanho ou força do agressor.</p>
+    </div>
+    <div class="pilar reveal">
+      <div class="pilar-n">02</div>
+      <div class="pilar-title">Condicionamento</div>
+      <p class="pilar-desc">Treinos que desenvolvem força funcional, flexibilidade, resistência e coordenação motora completa.</p>
+    </div>
+    <div class="pilar reveal">
+      <div class="pilar-n">03</div>
+      <div class="pilar-title">Disciplina</div>
+      <p class="pilar-desc">A rotina do tatame constrói foco, respeito e mentalidade de crescimento que se refletem em todas as áreas da vida.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faixas" id="faixas">
+  <div class="label">A jornada</div>
+  <h2 class="reveal">Sistema de faixas</h2>
+  <div class="faixas-row reveal">
+    <div class="faixa">
+      <div class="faixa-bar" style="background:#fff"></div>
+      <div class="faixa-name">Branca</div>
+      <div class="faixa-time">Início</div>
+    </div>
+    <div class="faixa">
+      <div class="faixa-bar" style="background:#2563a8"></div>
+      <div class="faixa-name">Azul</div>
+      <div class="faixa-time">~2 anos</div>
+    </div>
+    <div class="faixa">
+      <div class="faixa-bar" style="background:#7c3aed"></div>
+      <div class="faixa-name">Roxa</div>
+      <div class="faixa-time">~4 anos</div>
+    </div>
+    <div class="faixa">
+      <div class="faixa-bar" style="background:#92400e"></div>
+      <div class="faixa-name">Marrom</div>
+      <div class="faixa-time">~7 anos</div>
+    </div>
+    <div class="faixa">
+      <div class="faixa-bar" style="background:#111"></div>
+      <div class="faixa-name">Preta</div>
+      <div class="faixa-time">~10 anos</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <h2 class="reveal">Pronto para<br>começar?</h2>
+  <p class="cta-sub">Primeira aula sempre é de graça.</p>
+  <a href="https://wa.me/5596991144940" target="_blank" class="btn reveal">Falar com o CT Alcateia</a>
+</section>
+
+<footer>
+  <div class="footer-brand">CT ALCATEIA</div>
+  <div class="footer-copy">Monte Dourado - PA · @acd.alcateia_team</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on') })
+},{threshold:.12})
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+</script>
+</body>
+</html>
